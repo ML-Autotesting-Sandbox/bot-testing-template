@@ -4,5 +4,6 @@
 #  
 #
 #######################################
-
-# print("This is a test of GitHub and PyCharm. It is only a test.")
+def double_it(x):
+  x=x*2
+  return x
