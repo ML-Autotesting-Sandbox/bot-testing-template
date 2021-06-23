@@ -1,16 +1,13 @@
-# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+name: Build and Test
 
-name: Automatic testing
 on:
   push:
-    paths:
-      - 'src/my_code.py'
+    paths: 
+      - 'src/exercise.py'
 
 jobs:
+      
   test_and_comment:
-
-
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -26,14 +23,14 @@ jobs:
     - name: Failure message
       if: failure()
       uses: machine-learning-apps/pr-comment@1.0.0
-
+      env: 
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         path: .github/ISSUE_TEMPLATE/test-failure.md    
     - name: Lint student program
-      run: flake8 src/exercise.py
+      run: flake8 src/my_code.py
     - name: Success message
       uses: machine-learning-apps/pr-comment@1.0.0
- 
       env: 
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
